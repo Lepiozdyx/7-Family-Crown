@@ -15,9 +15,6 @@ struct CoatsView: View {
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             VStack(spacing: 0) {
-                // Nav bar
-//                navBar
-
                 if emblems.isEmpty {
                     emptyState
                 } else {
@@ -25,7 +22,6 @@ struct CoatsView: View {
                 }
             }
 
-            // FAB «+»
             Button {
                 showCreate = true
             } label: {
@@ -108,7 +104,6 @@ struct CoatsView: View {
     }
 
     // MARK: - Grid
-
     private var emblemGrid: some View {
         ScrollView(showsIndicators: false) {
             LazyVGrid(columns: columns, spacing: 16) {
@@ -130,7 +125,6 @@ private struct EmblemCell: View {
 
     var body: some View {
         ZStack {
-            // Круглый фон с золотым бордером
             Circle()
                 .fill(Color(red: 0.18, green: 0.10, blue: 0.08))
                 .overlay(
@@ -156,7 +150,6 @@ private struct EmblemCell: View {
         .aspectRatio(1, contentMode: .fit)
     }
 
-    // Копия логики из CreateEmblemView
     private var shieldView: some View {
         ZStack {
             ForEach(Array(emblem.color.enumerated()), id: \.element) { index, color in
@@ -210,9 +203,6 @@ private struct EmblemCell: View {
 struct CreateEmblemView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
-    
-    // Состояния для выбранных элементов
-    // Задаем цвет по умолчанию, чтобы эмблема не была пустой
     @State private var selectedColors: [EmblemColors] = [.yellow]
     @State private var selectedSymbols: [EmblemSymbols] = []
     
